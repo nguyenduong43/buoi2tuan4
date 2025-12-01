@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>TiVi Remote</title>
 </head>
 <body>
-$END$
+
 </body>
+<script>
+    let Tivi = function (kenh, al, trangthai) {
+        this.kenh = kenh;
+        this.al = al;
+        this.trangthai = trangthai;
+
+        this.setKenh1 = function (kenh) { this.kenh = kenh; }
+        this.getKenh1 = function () { return this.kenh; }
+
+        this.setAl = function (al) { this.al = al; }
+        this.getAl = function () { return this.al; }
+
+        this.setTrangthai = function (tt) { this.trangthai = tt; }
+        this.getTrangthai = function () { return this.trangthai; }
+    }
+
+    let Dieukhien = function (ma) {
+        this.ma = ma;
+        this.tivi = null;
+        this.kenh = "";
+        this.amluong = 0;
+
+        this.setKenh = function (kenh) { this.kenh = kenh; }
+        this.setAmluong = function (al) { this.amluong = al; }
+
+        this.getTivi = function (tivi) { this.tivi = tivi; }
+
+        this.battat = function () {
+            if (this.tivi.getTrangthai() === "bat")
+                this.tivi.setTrangthai("tat");
+            else
+                this.tivi.setTrangthai("bat");
+        }
+
+        this.tangal = function () {
+            this.amluong++;
+            this.tivi.setAl(this.amluong);
+        }
+
+        this.giamal = function () {
+            this.amluong--;
+            this.tivi.setAl(this.amluong);
+        }
+
+        this.chuyenkenh = function () {
+            this.tivi.setKenh1(this.kenh);
+        }
+    }
+
+    let tivi = new Tivi(7, 20, "tat");
+    let remote = new Dieukhien("ABC123");
+
+    remote.getTivi(tivi);
+
+    remote.battat();
+    remote.setKenh(3);
+    remote.chuyenkenh();
+    remote.setAmluong(tivi.getAl());
+    remote.tangal();
+    remote.tangal();
+    remote.battat();
+
+    alert(
+        "Kênh: " + tivi.getKenh1() +
+        "\nÂm lượng: " + tivi.getAl() +
+        "\nTrạng thái: " + tivi.getTrangthai()
+    );
+</script>
 </html>

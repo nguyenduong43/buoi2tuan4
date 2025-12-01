@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Apple</title>
 </head>
 <body>
-$END$
+
+<button onclick="adamEat()">Adam ăn táo</button>
+<button onclick="evaEat()">Eva ăn táo</button>
+
 </body>
 </html>
+
+<script>
+    // Lớp Apple
+    let Apple = function (weight) {
+        this.weight = weight;
+         this.setWeight=function (weight) {this.weight = weight};
+        this.getWeight = function () {
+            return this.weight;
+        };
+
+        this.getAnTao = function () {
+            if (this.weight > 0) {
+                this.weight--;
+            }
+        };
+    };
+
+    // Lớp Human
+    let Human = function (ten, gioitinh, cannang, noi) {
+        this.ten = ten;
+        this.gioitinh = gioitinh;
+        this.cannang = cannang;
+        this.noi = noi;
+
+        this.setApple = function (apple) { this.apple = apple; };
+
+        this.anTao = function () {
+            if (this.apple.getWeight() > 0) {
+                this.apple.getAnTao();
+                this.cannang++;
+
+                alert(
+                    this.ten +":"+this.noi+"\n"+
+                    "Táo còn: " + this.apple.getWeight() + "\n" +
+                    "Cân nặng hiện tại: " + this.cannang
+                );
+
+            } else {
+                alert("Hết táo rồi!");
+            }
+        };
+    };
+
+    // Khởi tạo
+    let Adam = new Human('Adam', 'Nam', 60, 'tôi ăn táo');
+    let Eva = new Human('Eva', 'Nữ', 45, 'tôi cũng ăn táo');
+
+    let apple = new Apple();
+    apple.setWeight(10);
+    alert("Khởi tạo quả táo nặng: " + apple.getWeight());
+
+    Adam.setApple(apple);
+    Eva.setApple(apple);
+
+    // Hàm nút bấm
+    function adamEat() {
+        Adam.anTao();
+    }
+
+    function evaEat() {
+        Eva.anTao();
+    }
+</script>

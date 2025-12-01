@@ -1,10 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
 </body>
 </html>
+<script>
+    let Chuot=function (ten,kl,td,live)
+    {
+        this.ten=ten;
+        this.kl=kl;
+        this.td=td;
+        this.live=live;
+        this.talk="";
+        this.setTen=function(ten){
+            this.ten=ten;
+        }
+        this.setKL=function(kl){
+            this.kl=kl;
+        }
+        this.setTD=function(td){
+            this.td=td;
+        }
+        this.setLive=function(live){
+            this.live=live;
+        }
+        this.setTalk=function(talk){
+            this.talk=talk;
+        }
+        this.getTen=function(){
+            return this.ten;
+        }
+        this.getKL=function(){
+            return this.kl;
+        }
+        this.getTD=function(){
+            return this.td;
+        }
+        this.getLIVE=function(){
+            return this.live;
+        }
+        this.getTalk=function(){
+            return this.talk;
+        }
+    }
+    let Meo=function (ten,kl,td)
+    {
+        this.ten=ten;
+        this.kl=kl;
+        this.td=td;
+        this.talk="";
+        this.setTalk1=function(talk){
+            this.talk=talk;
+        }
+        this.getTalk1=function(){
+            return this.talk;
+        }
+        this.getKL1=function(){
+            return this.kl;
+        }
+        this.getTD1=function(){
+            return this.td;
+        }
+        this.setChuot=function(chuot){
+            this.chuot=chuot;
+        }
+        this.kiemtra=function(){
+            if (this.td>this.chuot.getTD() && (this.chuot.getLIVE()=="Song"))
+                return alert(this.getTalk1()+"\n"+" meo bat dc chuot,khoi luong cua meo la "+(this.kl+this.chuot.getKL()));
+            else alert(this.chuot.getTalk() +"\n"+ "chuot chay dc mat roi");
+        }
+    }
+    let chuot=new Chuot("jerry",3,10,"Song");
+    let meo=new Meo("Tom",14,11);
+    chuot.setTalk("chit chit");
+    meo.setTalk1("meo meo");
+    meo.setChuot(chuot);
+    meo.kiemtra();
+
+
+
+
+</script>

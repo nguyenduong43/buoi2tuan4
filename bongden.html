@@ -1,10 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Switch - Lamp</title>
 </head>
 <body>
-$END$
+
 </body>
 </html>
+
+<script>
+    // Lớp Bóng đèn
+    let ElectricLamp = function () {
+        this.status = false; // false = tắt, true = bật
+
+        this.turnOn = function () {
+            this.status = true;
+        };
+
+        this.turnOff = function () {
+            this.status = false;
+        };
+
+        this.getStatus = function () {
+            return this.status ? "Bóng đèn đang BẬT" : "Bóng đèn đang TẮT";
+        };
+    };
+
+    // Lớp Công tắc
+    let SwitchButton = function () {
+        this.status = false;   // trạng thái công tắc
+
+        this.connectToLamp = function (lamp) {
+            this.lamp = lamp;
+        };
+
+        this.switchOn = function () {
+            this.status = true;
+            this.lamp.turnOn();
+        };
+
+        this.switchOff = function () {
+            this.status = false;
+            this.lamp.turnOff();
+        };
+    };
+
+    // === Khởi tạo ===
+    let lamp = new ElectricLamp();
+    let button = new SwitchButton();
+
+    // Kết nối công tắc với bóng đèn
+    button.connectToLamp(lamp);
+
+    // Bật/tắt 10 lần
+    for (let i = 1; i <= 10; i++) {
+
+        if (button.status === false) {
+            button.switchOn();
+        } else {
+            button.switchOff();
+        }
+
+        alert("Lần " + i + ": " + lamp.getStatus());
+    }
+</script>
